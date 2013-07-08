@@ -32,19 +32,19 @@ namespace SoftwarePassion.Common.Utilities.Test.MSTest
                 {
                     
                     Assert.Fail(string.Format(
-                                              CultureInfo.InvariantCulture,
-                                              "Expected {0} exception but got {1}",
-                                              typeof(TExceptionType).Name,
-                                              e.GetType().Name));
+                        CultureInfo.InvariantCulture,
+                        "Expected {0} exception but got {1}",
+                        typeof(TExceptionType).Name,
+                        e.GetType().Name));
                 }
 
                 return;
             }
 
             Assert.Fail(string.Format(
-                          CultureInfo.InvariantCulture,
-                          "Expected {0} exception but got none.",
-                          typeof(TExceptionType).Name));
+                CultureInfo.InvariantCulture,
+                "Expected {0} exception but got none.",
+                typeof(TExceptionType).Name));
         }
 
         /// <summary>
@@ -67,10 +67,10 @@ namespace SoftwarePassion.Common.Utilities.Test.MSTest
             catch (Exception e)
             {
                 Assert.Fail(string.Format(
-                              CultureInfo.InvariantCulture,
-                              "Expected no exception but got {0}. Details: {1}",
-                              e.GetType().Name,
-                              e.ToString()));
+                    CultureInfo.InvariantCulture,
+                    "Expected no exception but got {0}. Details: {1}",
+                    e.GetType().Name,
+                    e.ToString()));
             }
         }
     }
