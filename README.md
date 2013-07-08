@@ -1,0 +1,2 @@
+SoftwarePassion.Common
+======================
