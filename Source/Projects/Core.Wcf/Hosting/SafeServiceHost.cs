@@ -1,5 +1,6 @@
 ﻿using System;
 using Core.Wcf.Hosting.SafeServiceHosting;
+using SoftwarePassion.Common.Core.Wcf.Hosting.SafeServiceHosting;
 
 namespace Core.Wcf.Hosting
 {

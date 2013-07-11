@@ -83,7 +83,7 @@ namespace SoftwarePassion.Common.Core.Utilities
             var actualOption = option;
             foreach (var prefix in optionPrefixes)
             {
-                if (actualOption.IndexOf(prefix, StringComparison.InvariantCultureIgnoreCase) == 0)
+                if (actualOption.IndexOf(prefix, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     actualOption = actualOption.Substring(prefix.Length);
                     

@@ -36,6 +36,15 @@ namespace SoftwarePassion.Common.Core.TimeProviding
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="TimeSetter"/> class, using a Func for
+        /// returning the current DateTime.
+        /// </summary>
+        /// <param name="timeProvider">The time provider.</param>
+        public TimeSetter(Func<DateTime> timeProvider)
+            :this(new TimeProviderAction(timeProvider))
+        {}
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="TimeSetter" /> class with a TimeProviderMock as the
         /// provider.
         /// </summary>

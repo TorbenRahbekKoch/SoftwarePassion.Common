@@ -1,19 +1,16 @@
 using System;
+using System.Diagnostics.Contracts;
 
 namespace SoftwarePassion.Common.Core.Utilities
 {
-    public struct UrlParts
-    {
-        public string scheme;
-        public string host;
-        public string path;
-        public string leaf;
-        public string leafExtension;
-        public string urlExtension;
-        public string query;
-    }
-
-    public class UrlParser
+    /// <summary>
+    /// Splits a Uri into a UrlParts which contains the different constituents of the uri.
+    /// </summary>
+    /// <remarks>
+    /// I made this class ages ago. Have no idea why, but keeping it just for nostalgic reasons. Just brushed
+    /// it up in a few places.
+    /// </remarks>
+    public static class UrlParser
     {
         // A typical url concists of a scheme (http, ftp, etc)
         // A host (www.something.something)
@@ -55,6 +52,8 @@ namespace SoftwarePassion.Common.Core.Utilities
         /// <returns></returns>
         public static UrlParts SplitUrl(Uri uri)
         {
+            Contract.Requires(uri != null);
+
             UrlParts urlParts = AssignParts(uri);
 
             // There are two markers that are definitive.
@@ -62,59 +61,66 @@ namespace SoftwarePassion.Common.Core.Utilities
             // / at rightmost position without any ? indicates that the entire path is actually a path, no leaf etc.
 
             // Now any query string has been cut of, now check if the rightmost character is /:
-            int slashPos = urlParts.path.LastIndexOf('/');
-            if (slashPos == urlParts.path.Length - 1) // Yes, we have slash at the righmost position, this means no leaf, no ext, etc.
+            int slashPos = urlParts.Path.LastIndexOf('/');
+            if (slashPos == urlParts.Path.Length - 1) // Yes, we have slash at the righmost position, this means no leaf, no ext, etc.
             {
-                urlParts.path = urlParts.path.Substring(0, slashPos);
+                urlParts.Path = urlParts.Path.Substring(0, slashPos);
                 return urlParts; // Nothing more to do
             }
 
-            int dotPos = urlParts.path.LastIndexOf('.');
+            int dotPos = urlParts.Path.LastIndexOf('.');
             if (dotPos > 0) // there is a . - we may have a leaf then
             {
-                slashPos = urlParts.path.LastIndexOf('/', dotPos);      // Find the first slash before the dot
-                int slashPosAfter = urlParts.path.IndexOf('/', dotPos); // Find first slash, if any, after the dot
+                slashPos = urlParts.Path.LastIndexOf('/', dotPos);      // Find the first slash before the dot
+                int slashPosAfter = urlParts.Path.IndexOf('/', dotPos); // Find first slash, if any, after the dot
                 if (slashPosAfter < 0) // There is no following slash
                 {
-                    urlParts.leaf = urlParts.path.Substring(slashPos + 1); // the leaf is the entire end
-                    urlParts.leafExtension = urlParts.path.Substring(dotPos + 1);
+                    urlParts.Leaf = urlParts.Path.Substring(slashPos + 1); // the leaf is the entire end
+                    urlParts.LeafExtension = urlParts.Path.Substring(dotPos + 1);
                     if (slashPos >= 0) // This if is necessary because Substring does not accept negative lengths
-                        urlParts.path = urlParts.path.Substring(0, slashPos);
+                        urlParts.Path = urlParts.Path.Substring(0, slashPos);
                     else
-                        urlParts.path = "";
+                        urlParts.Path = "";
                 }
-                else if (slashPosAfter < urlParts.path.Length - 1) // we have an url extension
+                else if (slashPosAfter < urlParts.Path.Length - 1) // we have an url extension
                 {
-                    urlParts.leaf = urlParts.path.Substring(slashPos + 1, slashPosAfter - slashPos - 1);
-                    urlParts.leafExtension = urlParts.path.Substring(dotPos + 1, slashPosAfter - dotPos - 1);
-                    urlParts.urlExtension = urlParts.path.Substring(slashPosAfter + 1);
+                    urlParts.Leaf = urlParts.Path.Substring(slashPos + 1, slashPosAfter - slashPos - 1);
+                    urlParts.LeafExtension = urlParts.Path.Substring(dotPos + 1, slashPosAfter - dotPos - 1);
+                    urlParts.UrlExtension = urlParts.Path.Substring(slashPosAfter + 1);
                     if (slashPos >= 0) // This if is necessary because Substring does not accept negative lengths
-                        urlParts.path = urlParts.path.Substring(0, slashPos);
+                        urlParts.Path = urlParts.Path.Substring(0, slashPos);
                     else
-                        urlParts.path = "";
+                        urlParts.Path = "";
                 }
             }
+
             return urlParts;
         }
 
         private static UrlParts AssignParts(Uri uri)
         {
             UrlParts parts;
-            parts.scheme = uri.Scheme;
-            parts.host = uri.Host;
 
             // Get the full content path 
-            parts.path = uri.AbsolutePath;
-            if (parts.path.Length > 1 && parts.path[0] == '/')
-                parts.path = parts.path.Substring(1);
+            string path = uri.AbsolutePath;
+            if (path.Length > 1 && path[0] == '/')
+                path = path.Substring(1);
 
-            parts.leaf = "";
-            parts.leafExtension = "";
-            parts.urlExtension = "";
-            parts.query = uri.Query;
-            if (parts.query.Length > 1 && parts.query[0] == '?')
-                parts.query = parts.query.Substring(1);
-            return parts;
+            string leaf = "";
+            string leafExtension = "";
+            string urlExtension = "";
+            string query = uri.Query;
+            if (query.Length > 1 && query[0] == '?')
+                query = query.Substring(1);
+
+            return new UrlParts(
+                uri.Scheme, 
+                uri.Host,
+                path,
+                leaf,
+                leafExtension,
+                urlExtension,
+                query);
         }
     }
 }

@@ -28,6 +28,12 @@ namespace SoftwarePassion.Common.Core.TimeProviding
         /// </summary>
         public DateTime DateTime { get; set; }
 
+        /// <summary>
+        /// Returns the mocked DateTime
+        /// </summary>
+        /// <returns>
+        /// A DateTime.
+        /// </returns>
         protected override DateTime RetrieveUtcNow()
         {
             return DateTime;
