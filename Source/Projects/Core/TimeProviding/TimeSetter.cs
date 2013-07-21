@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 
 namespace SoftwarePassion.Common.Core.TimeProviding
 {
@@ -26,10 +27,7 @@ namespace SoftwarePassion.Common.Core.TimeProviding
         /// <param name="timeProvider">The time provider to set as current TimeProvider.</param>
         public TimeSetter(TimeProvider timeProvider)
         {
-            if (timeProvider == null)
-            {
-                throw new ArgumentNullException("timeProvider");
-            }
+            Contract.Requires(timeProvider != null);
 
             previousProvider = TimeProvider.Current;
             TimeProvider.Current = timeProvider;
@@ -41,8 +39,10 @@ namespace SoftwarePassion.Common.Core.TimeProviding
         /// </summary>
         /// <param name="timeProvider">The time provider.</param>
         public TimeSetter(Func<DateTime> timeProvider)
-            :this(new TimeProviderAction(timeProvider))
-        {}
+            : this(new TimeProviderAction(timeProvider))
+        {
+            Contract.Requires(timeProvider != null);
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TimeSetter" /> class with a TimeProviderMock as the
@@ -64,7 +64,7 @@ namespace SoftwarePassion.Common.Core.TimeProviding
         }
 
         /// <summary>
-        /// Sets the current time, if the provider is a TimeProviderMock.
+        /// Convenience method for setting the current time, _if_ the current provider is a TimeProviderMock.
         /// </summary>
         public static void SetNow(DateTime now)
         {

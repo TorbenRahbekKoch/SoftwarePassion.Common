@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using System.Text.RegularExpressions;
 using System.Globalization;
 
@@ -62,11 +63,14 @@ namespace SoftwarePassion.Common.Core.Utilities
         /// <param name="leftOperand">The left operand.</param>
         /// <param name="matchOperator">The match operator.</param>
         /// <param name="rightOperand">The right operand.</param>
+        /// <param name="caseSensitive">The case sensitive.</param>
         /// <param name="cultureInfo">The culture info.</param>
-        /// <returns></returns>
+        /// <returns>The result of the evaluation.</returns>
         /// <exception cref="System.Exception">Illegal operator  + matchOperator</exception>
         public static bool EvaluateCriterion(string leftOperand, string matchOperator, string rightOperand, Case caseSensitive, CultureInfo cultureInfo)
         {
+            Contract.Requires(cultureInfo != null);
+
             CompareOptions compareOptions = caseSensitive == Case.Sensitive 
                 ? CompareOptions.None 
                 : CompareOptions.IgnoreCase;            
@@ -112,11 +116,12 @@ namespace SoftwarePassion.Common.Core.Utilities
             {
                 return false;
             }
+
             if (matchOperator == "n=") // n => numerical comparison instead of string comparison
-                return lValue == rValue;
+                return lValue.CompareTo(rValue) == 0;
+
             if (matchOperator == "n<")
             {
-                bool t = lValue < rValue;
                 return lValue < rValue;
             }
             if (matchOperator == "n>")
@@ -126,7 +131,7 @@ namespace SoftwarePassion.Common.Core.Utilities
             if (matchOperator == "n>=")
                 return (lValue >= rValue);
             if (matchOperator == "n<>")
-                return (lValue != rValue);
+                return (lValue.CompareTo(rValue) != 0);
             throw new Exception("Illegal operator " + matchOperator);
         }
     }

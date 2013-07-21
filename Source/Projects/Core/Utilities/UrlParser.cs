@@ -99,7 +99,7 @@ namespace SoftwarePassion.Common.Core.Utilities
 
         private static UrlParts AssignParts(Uri uri)
         {
-            UrlParts parts;
+            Contract.Requires(uri != null);
 
             // Get the full content path 
             string path = uri.AbsolutePath;
