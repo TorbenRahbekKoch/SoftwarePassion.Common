@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -10,6 +11,57 @@ namespace SoftwarePassion.Common.Core.Extensions
     /// </summary>
     public static class StringExtensions
     {
+        /// <summary>
+        /// Checks whether the string can be parsed as a Guid. 
+        /// </summary>
+        /// <param name="value">The string value to check.</param>
+        /// <returns>A boolean indicating whether the string could be parsed as a Guid. A null string results in false.</returns>
+        [Pure]
+        public static bool IsGuid(this string value)
+        {
+            if (!value.HasContent())
+                return false;
+
+            Guid guid;
+            return Guid.TryParse(value, out guid);
+        }
+
+        /// <summary>
+        /// Returns a Uri instance parsed from the string, if the string contains a Uri-parsable value.
+        /// </summary>
+        /// <param name="value">The value with a Uri.</param>
+        /// <returns>The parsed Uri.</returns>
+        /// <exception cref="UriFormatException">If the value cannot be parsed as a Uri.</exception>
+        [Pure]
+        public static Uri Uri(this string value)
+        {
+            Contract.Requires(value != null);
+
+            return new Uri(value);
+        }
+
+        /// <summary>
+        /// Checks whether the string has content and it is different from white space.
+        /// </summary>
+        /// <param name="value">The string value to check.</param>
+        /// <returns>A boolean indicating whether the string has content. A null string results in false.</returns>
+        [Pure]
+        public static bool HasContent(this string value)
+        {
+            return (value != null) && (!string.IsNullOrWhiteSpace(value));
+        }
+
+        /// <summary>
+        /// Checks whether the string is null or it is empty.
+        /// </summary>
+        /// <param name="value">The string value to check.</param>
+        /// <returns>A boolean indicating whether the string is null or empty.</returns>
+        [Pure]
+        public static bool IsNullOrEmpty(this string value)
+        {
+            return string.IsNullOrEmpty(value);
+        }
+
         /// <summary>
         /// Short cut for string.Format(CultureInfo.InvariantCulture,...)
         /// </summary>
@@ -87,7 +139,7 @@ namespace SoftwarePassion.Common.Core.Extensions
         /// </summary>
         /// <param name="value"></param>
         /// <returns>The hash value.</returns>
-        public static int Hash(this string value)
+        public static int SafeHash(this string value)
         {
             if (value == null) throw new ArgumentNullException("value");
 
@@ -118,6 +170,28 @@ namespace SoftwarePassion.Common.Core.Extensions
                 num1 = (num1 << 5) + num1 + (num1 >> 27) ^ numPtr0;
             }
             return num1 + num2 * 1566083941;
+        }
+
+        /// <summary>
+        /// Replaces the part of the string specified with index and length with the replaceValue.
+        /// </summary>
+        /// <param name="replacable">The replacable.</param>
+        /// <param name="index">The index of the part of the string to replace.</param>
+        /// <param name="length">The length of the part of the string to replace.</param>
+        /// <param name="replaceValue">The string value to replace the part of the string with.</param>
+        /// <returns>The replaced string.</returns>
+        public static string Replace(this string replacable, int index, int length, string replaceValue)
+        {
+            Contract.Requires(replacable != null);
+            Contract.Requires(index >= 0 && index < replacable.Length);
+            Contract.Requires(length > 0);
+            Contract.Requires(replaceValue != null);
+
+            var endPartIndex = index + length;
+            var replaced = replacable.Substring(0, index) + replaceValue;
+            if (endPartIndex < replacable.Length)
+                replaced += replacable.Substring(endPartIndex);
+            return replaced;
         }
     }
 }

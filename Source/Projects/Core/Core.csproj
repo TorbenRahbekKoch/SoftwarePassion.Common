@@ -94,6 +94,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -108,9 +109,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExpressionEvaluating\ExpressionEvaluatorImplementation.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Option.cs" />
+    <Compile Include="PluginManagement\ExcludeSystemAssemblies.cs" />
+    <Compile Include="PluginManagement\PluginFinderConfiguration.cs" />
     <Compile Include="Serialization\DataContractSerialization.cs" />
     <Compile Include="TimeProviding\DefaultTimeProvider.cs" />
     <Compile Include="TimeProviding\TimeProvider.cs" />
@@ -121,6 +125,7 @@
     <Compile Include="Utilities\CommandLineOptionsParser.cs" />
     <Compile Include="Utilities\CriterionEvaluator.cs" />
     <Compile Include="ExpressionEvaluating\ExpressionEvaluator.cs" />
+    <Compile Include="PluginManagement\PluginFinder.cs" />
     <Compile Include="Utilities\UrlParser.cs" />
     <Compile Include="Utilities\UrlParts.cs" />
   </ItemGroup>
