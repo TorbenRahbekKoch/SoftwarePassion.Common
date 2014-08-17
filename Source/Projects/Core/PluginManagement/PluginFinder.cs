@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -30,6 +31,9 @@ namespace SoftwarePassion.Common.Core.PluginManagement
             params object[] constructorParameters) 
             where TImplementee : class
         {
+            Contract.Requires(configuration != null);
+            Contract.Ensures(Contract.Result<TImplementee>() != null);
+            
             foreach (var assemblyName in configuration.AssembliesToLoadExplicitly)
             {
                 AppDomain.CurrentDomain.Load(assemblyName);
@@ -84,7 +88,7 @@ namespace SoftwarePassion.Common.Core.PluginManagement
                 composerTypes = new List<TypeInfo>() { composerTypes.First() };
             };
 
-            var composerTypeName = configuration.TypeToExplicitlyLookFor.HasValue 
+            var composerTypeName = configuration.TypeToExplicitlyLookFor.IsSome
                 ? configuration.TypeToExplicitlyLookFor.Value : 
                 string.Empty;
             if (composerTypes.Count() > 1)

@@ -71,7 +71,7 @@ namespace SoftwarePassion.Common.Core.Extensions
         /// <remarks>
         /// It is very nice to use it like this:
         /// <code>
-        ///   "My {0}th formattable string on this fine {1}.".FormatInvaraint(42, DateTime.Now.DayOfWeek);
+        ///   "My {0}th formattable string on this fine {1}.".FormatInvariant(42, DateTime.Now.DayOfWeek);
         /// </code>
         /// </remarks>
         public static string FormatInvariant(this string formattable, params object[] parameters)

@@ -28,6 +28,7 @@ namespace SoftwarePassion.Common.Core.PluginManagement
             Contract.Requires(typesToExclude != null);
             Contract.Requires(assembliesToExclude != null);
             Contract.Requires(assembliesToLoadExplicitly != null);
+            Contract.Requires(typeToExplicitlyLookFor != null);
             
             TypeToExplicitlyLookFor = typeToExplicitlyLookFor;
             TypesToExclude = typesToExclude;

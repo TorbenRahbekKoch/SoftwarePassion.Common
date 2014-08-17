@@ -15,7 +15,7 @@ namespace SoftwarePassion.Common.Core
         /// </summary>
         /// <typeparam name="TOptionType">The underlying type of the option.</typeparam>
         /// <returns>A <see cref="None&lt;TOptionType&gt;"/>.</returns>
-        public static Option<TOptionType> None<TOptionType>()
+        public static Option<TOptionType> None<TOptionType>() where TOptionType : IComparable
         {
             return new None<TOptionType>();
         }
@@ -26,7 +26,7 @@ namespace SoftwarePassion.Common.Core
         /// <typeparam name="TOptionType">The underlying type of the option.</typeparam>
         /// <param name="value">The value of the option.</param>
         /// <returns>A <see cref="Some&lt;TOptionType&gt;"/>.</returns>
-        public static Option<TOptionType> Some<TOptionType>(TOptionType value)
+        public static Option<TOptionType> Some<TOptionType>(TOptionType value) where TOptionType : IComparable
         {
             return new Some<TOptionType>(value);
         }
@@ -39,7 +39,7 @@ namespace SoftwarePassion.Common.Core
     /// you to consider that a return value may be invalid.
     /// </summary>
     /// <typeparam name="TOptionType">The type to make optional.</typeparam>
-    public abstract class Option<TOptionType>
+    public abstract class Option<TOptionType> where TOptionType : IComparable
     {
         internal Option(OptionType optionType)
         {
@@ -51,10 +51,11 @@ namespace SoftwarePassion.Common.Core
         /// </summary>
         public OptionType OptionType { get { return optionType; } }
 
-        /// <summary>
+        /// Return true if this instance does NOT have a value, otherwise false is returned.
+        public bool IsNone { get { return OptionType == OptionType.None; } }
+
         /// Return true if this instance has a value, otherwise false is returned.
-        /// </summary>
-        public bool HasValue {get { return OptionType == OptionType.Some; }}
+        public bool IsSome { get { return OptionType == OptionType.Some; } }
 
         /// <summary>
         /// Gets the value, if it is valid.
@@ -62,6 +63,57 @@ namespace SoftwarePassion.Common.Core
         /// <value>The value.</value>
         /// <exception cref="InvalidOperationException">When the options is a None-option.</exception>
         public TOptionType Value { get { return PerformValue; } }
+
+        /// <summary>
+        /// Compares this and the obj. If either is None they are considered
+        /// different. If both are Some then their respective values are
+        /// compared.
+        /// </summary>
+        /// <param name="obj">The other Option to compare with.</param>
+        /// <returns>If considered equal, true is returned. Otherwise false
+        /// is returned.</returns>
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+
+            if (!(obj is Option<TOptionType>))
+                return false;
+
+            if (this.IsNone)
+                return false;
+
+            return object.Equals(((Option<TOptionType>) obj).Value, this.Value);            
+        }
+
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for this instance, suitable for use in 
+        /// hashing algorithms and data structures like a hash table.
+        /// If the instance is a None, the default Hash Code is returned.
+        /// If the instance is a Some, the hash code of the Value is
+        /// returned.</returns>
+        public override int GetHashCode()
+        {
+            if (this.IsNone)
+                return base.GetHashCode();
+
+            return Value.GetHashCode();
+        }
+
+        /// <summary>
+        /// Performs an explicit conversion from TOptionType to Option&lt;TOptionType&gt;.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>The result of the conversion.</returns>
+        public static implicit operator Option<TOptionType>(TOptionType value)
+        {
+            if (object.Equals(null, value))
+                return Option.None<TOptionType>();
+
+            return Option.Some(value);
+        }
 
         /// <summary>
         /// Returns the value.
@@ -94,10 +146,15 @@ namespace SoftwarePassion.Common.Core
     /// when there is no value.
     /// </summary>
     /// <typeparam name="TOptionType">The underlying type of the option.</typeparam>
-    public class None<TOptionType> : Option<TOptionType>
+    public class None<TOptionType> : Option<TOptionType> where TOptionType : IComparable
     {
         internal None() : base(OptionType.None) { }
 
+        /// <summary>
+        /// Always throws <see cref="InvalidOperationException"/>.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">Always, since a None
+        /// cannot have a Value.</exception>
         protected override TOptionType PerformValue
         {
             get { throw new InvalidOperationException("None does not have a value."); }
@@ -109,7 +166,7 @@ namespace SoftwarePassion.Common.Core
     /// when there is a value.
     /// </summary>
     /// <typeparam name="TOptionType">The underlying type of the option.</typeparam>
-    public class Some<TOptionType> : Option<TOptionType>
+    public class Some<TOptionType> : Option<TOptionType> where TOptionType : IComparable
     {
         internal Some(TOptionType value)
             : base(OptionType.Some)
@@ -117,6 +174,9 @@ namespace SoftwarePassion.Common.Core
             this.value = value;
         }
 
+        /// <summary>
+        /// Returns the value of the Option.
+        /// </summary>
         override protected TOptionType PerformValue { get { return value; } }
 
         private readonly TOptionType value;

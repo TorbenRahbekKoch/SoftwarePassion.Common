@@ -1,6 +1,7 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Source\Projects\Core\Core.csproj", "{DF241F73-E055-4A9B-A6B5-E2061259C4CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Tests.Unit", "Source\Projects\Core.Tests.Unit\Core.Tests.Unit.csproj", "{26FD423A-6268-43D6-92C0-BD4B8203E47E}"
@@ -8,6 +9,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Wcf", "Source\Projects\Core.Wcf\Core.Wcf.csproj", "{20C1E6D1-CCB3-4805-B8BF-D2D1EE81DB53}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities.Test.MSTest", "Source\Projects\Utilities.Test.MSTest\Utilities.Test.MSTest.csproj", "{B22346F6-1272-4FB4-98F1-2B3BAF33E5B9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{B3DFD20F-6D22-464C-8849-0EF12FC8F1C9}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

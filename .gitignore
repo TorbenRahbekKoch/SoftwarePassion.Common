@@ -1,4 +1,9 @@
 .svn
 Debug
+/Build
 
-/Build/Release
+*.user
+
+/*.suo
+
+obj
