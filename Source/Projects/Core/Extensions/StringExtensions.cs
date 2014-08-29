@@ -52,7 +52,7 @@ namespace SoftwarePassion.Common.Core.Extensions
         }
 
         /// <summary>
-        /// Checks whether the string is null or it is empty.
+        /// Checks whether the string is null or is empty.
         /// </summary>
         /// <param name="value">The string value to check.</param>
         /// <returns>A boolean indicating whether the string is null or empty.</returns>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ServiceModel;
 
-namespace Core.Wcf.Hosting.SafeServiceHosting
+namespace SoftwarePassion.Common.Core.Wcf.Hosting.SafeServiceHosting
 {
     /// <summary>
     /// A ServiceHost that uses a Func[object] creation function to 

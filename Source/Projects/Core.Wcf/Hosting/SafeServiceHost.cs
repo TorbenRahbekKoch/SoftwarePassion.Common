@@ -1,8 +1,7 @@
 ﻿using System;
-using Core.Wcf.Hosting.SafeServiceHosting;
 using SoftwarePassion.Common.Core.Wcf.Hosting.SafeServiceHosting;
 
-namespace Core.Wcf.Hosting
+namespace SoftwarePassion.Common.Core.Wcf.Hosting
 {
     /// <summary>
     /// A ServiceHost wrapper, which automatically tries to reinstantiate when

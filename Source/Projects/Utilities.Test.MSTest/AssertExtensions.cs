@@ -30,7 +30,6 @@ namespace SoftwarePassion.Common.Utilities.Test.MSTest
             {
                 if (!(e.GetType() == typeof(TExceptionType)))
                 {
-                    
                     Assert.Fail(string.Format(
                         CultureInfo.InvariantCulture,
                         "Expected {0} exception but got {1}",

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ServiceModel;
-    
-namespace Core.Wcf.Extensions
+
+namespace SoftwarePassion.Common.Core.Wcf.Extensions
 {
     /// <summary>
     /// Defines extension methods for types compatible with the

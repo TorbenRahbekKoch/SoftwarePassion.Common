@@ -4,7 +4,7 @@ using System.ServiceModel.Channels;
 using System.ServiceModel.Description;
 using System.ServiceModel.Dispatcher;
 
-namespace Core.Wcf.Hosting.SafeServiceHosting
+namespace SoftwarePassion.Common.Core.Wcf.Hosting.SafeServiceHosting
 {
     /// <summary>
     /// IInstanceProvider used by CustomCreatorServiceHost to create the actual instance for WCF.

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ServiceModel;
-using Core.Wcf.Extensions;
+using SoftwarePassion.Common.Core.Wcf.Extensions;
 
-namespace Core.Wcf.Hosting.SafeServiceHosting
+namespace SoftwarePassion.Common.Core.Wcf.Hosting.SafeServiceHosting
 {
     internal class SafeServiceHostInstanceImplementation : ISafeServiceHostImplementation, IDisposable
     {

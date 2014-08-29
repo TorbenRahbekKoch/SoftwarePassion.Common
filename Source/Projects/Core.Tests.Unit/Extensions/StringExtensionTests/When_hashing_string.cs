@@ -3,7 +3,7 @@ using System.Security;
 using NUnit.Framework;
 using SoftwarePassion.Common.Core.Extensions;
 
-namespace Common.Tests.Unit.Extensions.StringExtensionTests
+namespace SoftwarePassion.Common.Core.Tests.Unit.Extensions.StringExtensionTests
 {
     [TestFixture]
     public class When_hashing_string

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Core.Wcf.Hosting.SafeServiceHosting
+namespace SoftwarePassion.Common.Core.Wcf.Hosting.SafeServiceHosting
 {
     internal interface ISafeServiceHostImplementation
     {
