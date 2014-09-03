@@ -16,10 +16,10 @@
 		<tags>Utility</tags>
 		<dependencies />
     <frameworkAssemblies>
-      <frameworkAssmbly assemblyName="System.Runtime.Serialization" targetFramework="net45" />
-      <frameworkAssmbly assemblyName="System" targetFramework="net45" />
-      <frameworkAssmbly assemblyName="System.Xml" targetFramework="net45" />
-      <frameworkAssmbly assemblyName="System.Core" targetFramework="net45" />
+      <frameworkAssembly assemblyName="System.Runtime.Serialization" targetFramework="net45" />
+      <frameworkAssembly assemblyName="System" targetFramework="net45" />
+      <frameworkAssembly assemblyName="System.Xml" targetFramework="net45" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework="net45" />
     </frameworkAssemblies>
   </metadata>
 	<files>
