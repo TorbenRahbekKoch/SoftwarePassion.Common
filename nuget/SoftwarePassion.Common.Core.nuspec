@@ -15,16 +15,16 @@
 		<copyright>Copyright 2014</copyright>
 		<tags>Utility</tags>
 		<dependencies />
-	</metadata>
+    <frameworkAssemblies>
+      <frameworkAssmbly assemblyName="System.Runtime.Serialization" targetFramework="net45" />
+      <frameworkAssmbly assemblyName="System" targetFramework="net45" />
+      <frameworkAssmbly assemblyName="System.Xml" targetFramework="net45" />
+      <frameworkAssmbly assemblyName="System.Core" targetFramework="net45" />
+    </frameworkAssemblies>
+  </metadata>
 	<files>
 		<file src="..\Build\Release\SoftwarePassion.Common.Core.dll" target="lib\net45\" />
 		<file src="..\Build\Release\SoftwarePassion.Common.Core.pdb" target="lib\net45\" />
 		<file src="..\Build\Release\SoftwarePassion.Common.Core.xml" target="lib\net45\" />
 	</files>
-  <frameworkAssemblies>
-    <frameworkAssmbly assemblyName="System.Runtime.Serialization" targetFramework="net45" />
-    <frameworkAssmbly assemblyName="System" targetFramework="net45" />
-    <frameworkAssmbly assemblyName="System.Xml" targetFramework="net45" />
-    <frameworkAssmbly assemblyName="System.Core" targetFramework="net45" />
-  </frameworkAssemblies>
 </package>
