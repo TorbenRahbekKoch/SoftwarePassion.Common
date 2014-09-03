@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Source\Projects\Core\Core.csproj", "{DF241F73-E055-4A9B-A6B5-E2061259C4CE}"
 EndProject
@@ -12,7 +12,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities.Test.MSTest", "So
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{B3DFD20F-6D22-464C-8849-0EF12FC8F1C9}"
 	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
 		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{71D5F658-A31D-4BD7-BF73-A73244762915}"
+	ProjectSection(SolutionItems) = preProject
+		nuget\SoftwarePassion.Common.Core.nuspec = nuget\SoftwarePassion.Common.Core.nuspec
 	EndProjectSection
 EndProject
 Global

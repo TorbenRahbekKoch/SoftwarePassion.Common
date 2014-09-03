@@ -5,8 +5,8 @@ using System.Collections.Generic;
 namespace SoftwarePassion.Common.Core.ExpressionEvaluating
 {
     /// <summary>
-    /// Enables to evaluate an expression like A OR B AND (D XOR E)
-    /// where each letter indicates the boolean result of an evaluation.
+    /// Enables to evaluate an expression like 'A OR B AND (D XOR E)'
+    /// where each letter indicates the boolean result of some other evaluation.
     /// </summary>
     public static class ExpressionEvaluator
     {

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+		<id>SoftwarePassion.Common.Core</id>
+		<version>@build.number@</version>
+		<authors>Torben Rahbek Koch</authors>
+		<owners>Torben Rahbek Koch</owners>
+		<licenseUrl>https://github.com/TorbenRahbekKoch/SoftwarePassion.Common/blob/master/LICENSE.txt</licenseUrl>
+		<projectUrl>https://github.com/TorbenRahbekKoch/SoftwarePassion.Common</projectUrl>
+		<iconUrl>https://github.com/TorbenRahbekKoch/SoftwarePassion.Common/blob/master//nuget/SoftwarePassion.Common.Core.logo.png</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<summary>Basic utilities used in other projects.</summary>
+		<description>A collection of valuable utilities.</description>
+		<releaseNotes>@releaseNotes@</releaseNotes>
+		<copyright>Copyright 2014</copyright>
+		<tags>Utility</tags>
+		<dependencies />
+	</metadata>
+	<files>
+		<file src="..\Build\Release\SoftwarePassion.Common.Core.dll" target="lib\net45\" />
+		<file src="..\Build\Release\SoftwarePassion.Common.Core.pdb" target="lib\net45\" />
+		<file src="..\Build\Release\SoftwarePassion.Common.Core.xml" target="lib\net45\" />
+	</files>
+  <frameworkAssemblies>
+    <frameworkAssmbly assemblyName="System.Runtime.Serialization" targetFramework="net45" />
+    <frameworkAssmbly assemblyName="System" targetFramework="net45" />
+    <frameworkAssmbly assemblyName="System.Xml" targetFramework="net45" />
+    <frameworkAssmbly assemblyName="System.Core" targetFramework="net45" />
+  </frameworkAssemblies>
+</package>
