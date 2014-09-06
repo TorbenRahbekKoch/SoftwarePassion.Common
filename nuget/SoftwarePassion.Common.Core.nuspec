@@ -10,8 +10,8 @@
 		<iconUrl>https://github.com/TorbenRahbekKoch/SoftwarePassion.Common/blob/master//nuget/SoftwarePassion.Common.Core.logo.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<summary>Basic utilities used in other projects.</summary>
-		<description>A collection of valuable utilities.</description>
-		<releaseNotes>@releaseNotes@</releaseNotes>
+		<description>A collection of valuable utilities used in my other projects.</description>
+		<releaseNotes></releaseNotes>
 		<copyright>Copyright 2014</copyright>
 		<tags>Utility</tags>
 		<dependencies />
