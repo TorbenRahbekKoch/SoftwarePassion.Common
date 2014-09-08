@@ -15,7 +15,7 @@ namespace SoftwarePassion.Common.Core
         /// </summary>
         /// <typeparam name="TOptionType">The underlying type of the option.</typeparam>
         /// <returns>A <see cref="None&lt;TOptionType&gt;"/>.</returns>
-        public static Option<TOptionType> None<TOptionType>() where TOptionType : IComparable
+        public static Option<TOptionType> None<TOptionType>() 
         {
             return new None<TOptionType>();
         }
@@ -26,7 +26,7 @@ namespace SoftwarePassion.Common.Core
         /// <typeparam name="TOptionType">The underlying type of the option.</typeparam>
         /// <param name="value">The value of the option.</param>
         /// <returns>A <see cref="Some&lt;TOptionType&gt;"/>.</returns>
-        public static Option<TOptionType> Some<TOptionType>(TOptionType value) where TOptionType : IComparable
+        public static Option<TOptionType> Some<TOptionType>(TOptionType value) 
         {
             return new Some<TOptionType>(value);
         }
@@ -39,7 +39,7 @@ namespace SoftwarePassion.Common.Core
     /// you to consider that a return value may be invalid.
     /// </summary>
     /// <typeparam name="TOptionType">The type to make optional.</typeparam>
-    public abstract class Option<TOptionType> where TOptionType : IComparable
+    public abstract class Option<TOptionType> 
     {
         internal Option(OptionType optionType)
         {
@@ -146,7 +146,7 @@ namespace SoftwarePassion.Common.Core
     /// when there is no value.
     /// </summary>
     /// <typeparam name="TOptionType">The underlying type of the option.</typeparam>
-    public class None<TOptionType> : Option<TOptionType> where TOptionType : IComparable
+    public class None<TOptionType> : Option<TOptionType> 
     {
         internal None() : base(OptionType.None) { }
 
@@ -166,7 +166,7 @@ namespace SoftwarePassion.Common.Core
     /// when there is a value.
     /// </summary>
     /// <typeparam name="TOptionType">The underlying type of the option.</typeparam>
-    public class Some<TOptionType> : Option<TOptionType> where TOptionType : IComparable
+    public class Some<TOptionType> : Option<TOptionType>
     {
         internal Some(TOptionType value)
             : base(OptionType.Some)
