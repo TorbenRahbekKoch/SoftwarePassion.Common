@@ -18,4 +18,4 @@ The SafeServiceHost is very useful in self-hosting scenarios.
 ErrorHandling
 =============
 
-A collection of Exception classes inspired by (my error handling blog)[http://softwarepassion.eu/error-handling-the-easy-way/]
+A collection of Exception classes inspired by [my error handling blog](http://softwarepassion.eu/error-handling-the-easy-way/).
