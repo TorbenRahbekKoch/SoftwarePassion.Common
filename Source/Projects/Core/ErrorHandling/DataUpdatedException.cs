@@ -1,64 +1,70 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Linq;
 using System.Runtime.Serialization;
 using System.Security;
-using System.Text;
-using System.Threading.Tasks;
+using SoftwarePassion.Common.Core.Extensions;
 
-namespace SoftwarePassion.Common.ErrorHandling
+namespace SoftwarePassion.Common.Core.ErrorHandling
 {
     /// <summary>
-    /// Exception thrown by the data access layer when a duplicate key situation is encountered.
+    /// Exception thrown when a concurrency problem (data already deleted/updated) is 
+    /// encountered. 
     /// </summary>
     [Serializable]
-    public class DuplicateKeyException : UserRecoverableException
+    public class DataUpdatedException : UserRecoverableException
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DuplicateKeyException" /> class.
+        /// Initializes a new instance of the <see cref="DataUpdatedException" /> class.
         /// </summary>
         /// <param name="entityName">Name of the entity.</param>
-        /// <param name="duplicateFieldName">Name of the duplicate field.</param>
-        /// <param name="duplicateFieldValue">The duplicate field value.</param>
-        /// <param name="message">The message.</param>
+        /// <param name="id">The id.</param>
         /// <param name="innerException">The inner exception.</param>
-        public DuplicateKeyException(string entityName, string duplicateFieldName, string duplicateFieldValue, string message, Exception innerException)
-            : base(message, innerException)
+        public DataUpdatedException(string entityName, string id, Exception innerException)
+            : base("Entity with Id {0} updated or deleted in {1}.".FormatInvariant(entityName, id), innerException)
         {
             EntityName = entityName;
-            DuplicateFieldName = duplicateFieldName;
-            DuplicateFieldValue = duplicateFieldValue;
+            Id = id;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DuplicateKeyException" /> class.
+        /// Initializes a new instance of the <see cref="DataUpdatedException" /> class.
         /// </summary>
-        /// <param name="entityName">Name of the entity.</param>
-        /// <param name="duplicateFieldName">Name of the duplicate field.</param>
-        /// <param name="duplicateFieldValue">The duplicate field value.</param>
+        /// <param name="entityName">Name of the table.</param>
+        /// <param name="id">The id.</param>
         /// <param name="message">The message.</param>
-        public DuplicateKeyException(string entityName, string duplicateFieldName, string duplicateFieldValue, string message)
+        public DataUpdatedException(string entityName, string id, string message)
             : base(message)
         {
             EntityName = entityName;
-            DuplicateFieldName = duplicateFieldName;
-            DuplicateFieldValue = duplicateFieldValue;
+            Id = id;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DuplicateKeyException"/> class.
+        /// Initializes a new instance of the <see cref="DataUpdatedException" /> class.
+        /// </summary>
+        /// <param name="entityName">Name of the table.</param>
+        /// <param name="id">The id.</param>
+        /// <param name="message">The message.</param>
+        /// <param name="innerException">The inner exception.</param>
+        public DataUpdatedException(string entityName, string id, string message, Exception innerException)
+            : base(message, innerException)
+        {
+            EntityName = entityName;
+            Id = id;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DataUpdatedException"/> class.
         /// </summary>
         /// <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
         /// <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
-        protected DuplicateKeyException(SerializationInfo info, StreamingContext context)
+        protected DataUpdatedException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
             Contract.Requires(info != null);
 
             EntityName = info.GetString(EntityNameKey);
-            DuplicateFieldName = info.GetString(DuplicateFieldNameKey);
-            DuplicateFieldValue = info.GetString(DuplicateFieldValueKey);
+            Id = info.GetString(IdKey);
         }
 
         /// <summary>
@@ -75,27 +81,23 @@ namespace SoftwarePassion.Common.ErrorHandling
         {
             base.GetObjectData(info, context);
             info.AddValue(EntityNameKey, EntityName);
-            info.AddValue(DuplicateFieldNameKey, DuplicateFieldName);
-            info.AddValue(DuplicateFieldValueKey, DuplicateFieldValue);
+            info.AddValue(IdKey, Id);
         }
 
         /// <summary>
-        /// Gets the name of the entity in which the duplicate key was encountered.
+        /// Gets the name of the table .
         /// </summary>
+        /// <value>
+        /// The name of the table.
+        /// </value>
         public string EntityName { get; private set; }
 
         /// <summary>
-        /// Gets the name of the field in which the duplicate key was encountered.
+        /// A string representation of the primary key of the entity that was updated.
         /// </summary>
-        public string DuplicateFieldName { get; private set; }
+        public string Id { get; private set; }
 
-        /// <summary>
-        /// Gets the duplicate field value.
-        /// </summary>
-        public string DuplicateFieldValue { get; private set; }
-
-        private const string EntityNameKey = "EntityName";
-        private const string DuplicateFieldNameKey = "DuplicateFieldName";
-        private const string DuplicateFieldValueKey = "DuplicateFieldValue";
+        private const string EntityNameKey = "TableName";
+        private const string IdKey = "Id";
     }
 }

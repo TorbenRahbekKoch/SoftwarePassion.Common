@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SoftwarePassion.Common.ErrorHandling
+namespace SoftwarePassion.Common.Core.ErrorHandling
 {
     /// <summary>
     /// <see cref="AuthorizationException"/> is thrown when the user (machine 

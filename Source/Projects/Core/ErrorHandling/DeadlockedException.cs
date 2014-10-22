@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SoftwarePassion.Common.ErrorHandling
+namespace SoftwarePassion.Common.Core.ErrorHandling
 {
     /// <summary>
     /// Exception thrown when a deadlock situation is encountered.

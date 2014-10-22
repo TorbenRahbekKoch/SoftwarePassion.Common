@@ -150,10 +150,31 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\RetrySettings.cs" />
+    <Compile Include="Data\SqlDataAccessHandler.cs" />
+    <Compile Include="ErrorHandling\AuthorizationException.cs" />
+    <Compile Include="ErrorHandling\DataDeletedException.cs" />
+    <Compile Include="ErrorHandling\DataUpdatedException.cs" />
+    <Compile Include="ErrorHandling\DeadlockedException.cs" />
+    <Compile Include="ErrorHandling\DuplicateKeyException.cs" />
+    <Compile Include="ErrorHandling\ForeignKeyException.cs" />
+    <Compile Include="ErrorHandling\InvalidDataException.cs" />
+    <Compile Include="ErrorHandling\NoDataException.cs" />
+    <Compile Include="ErrorHandling\ProviderInaccessibleException.cs" />
+    <Compile Include="ErrorHandling\RecoverableException.cs" />
+    <Compile Include="ErrorHandling\SqlErrorCodes.cs" />
+    <Compile Include="ErrorHandling\SqlForeignKeyViolation.cs" />
+    <Compile Include="ErrorHandling\TimeoutException.cs" />
+    <Compile Include="ErrorHandling\TruncatedDataException.cs" />
+    <Compile Include="ErrorHandling\SqlUniqueKeyViolation.cs" />
+    <Compile Include="ErrorHandling\UnrecoverableException.cs" />
+    <Compile Include="ErrorHandling\UserRecoverableException.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExpressionEvaluating\ExpressionEvaluatorImplementation.cs" />

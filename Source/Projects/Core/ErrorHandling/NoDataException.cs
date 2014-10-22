@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SoftwarePassion.Common.ErrorHandling
+namespace SoftwarePassion.Common.Core.ErrorHandling
 {
     /// <summary>
-    /// Thrown when there was no data returned. This can happen because search
+    /// Thrown when there was no data returned. This can happen e.g. because search
     /// criteria are wrong which makes this, in general, a UserRecoverableException.
     /// </summary>
     [Serializable]

@@ -51,32 +51,10 @@ namespace SoftwarePassion.Common.Core.PluginManagement
 
             var typeNamesToExclude = configuration.TypesToExclude.ToDictionary(t => t.FullName);
             var exportedTypes = new List<TypeInfo>();
-            foreach (var assembly in assembliesToSearch)
-            {
-                try
-                {                    
-                    exportedTypes.AddRange(
-                        assembly.DefinedTypes
-                        .Where(ti => ti.IsClass && 
-                                     !ti.IsAbstract &&
-                                     ti.IsPublic &&
-                                     typeof(TImplementee).IsAssignableFrom(ti) &&
-                                     !typeNamesToExclude.ContainsKey(ti.FullName)));
-                }
-                catch (ReflectionTypeLoadException)
-                { }
-                catch (FileNotFoundException)
-                {
-                    // This typically arises when reflection over a type causes not-deployed-dlls to be requested.
-                    // E.g. Unity implements IServiceLocator, but normally doesn't use it. When we're reflecting
-                    // over it, it (.NET) tries to locate the assembly to provide the information, but this fails.
-                    // We allow ourselves to ignore that.
-                }
-            }
-
-            var composerTypes = exportedTypes
-                .Distinct()
-                .ToList();
+            var composerTypes = AddPossibleComposerTypes<TImplementee>(
+                assembliesToSearch, 
+                exportedTypes, 
+                typeNamesToExclude);
 
             // For some reason it sometimes happens that the above code loads two types types
             // with the same name. If this happens we simply choose to take the first of these.
@@ -131,6 +109,42 @@ namespace SoftwarePassion.Common.Core.PluginManagement
                 throw new InvalidOperationException("No implementation for '{0}' found.".FormatInvariant(typeof(TImplementee).FullName));
 
             return Activator.CreateInstance(composerType, constructorParameters) as TImplementee;
+        }
+
+        private static List<TypeInfo> AddPossibleComposerTypes<TImplementee>(IList<Assembly> assembliesToSearch, List<TypeInfo> exportedTypes,
+            Dictionary<string, Type> typeNamesToExclude) where TImplementee : class
+        {
+            Contract.Requires(assembliesToSearch != null);
+            Contract.Requires(exportedTypes!= null);
+
+            foreach (var assembly in assembliesToSearch)
+            {
+                try
+                {
+                    exportedTypes.AddRange(
+                        assembly.DefinedTypes
+                            .Where(ti => ti.IsClass &&
+                                         !ti.IsAbstract &&
+                                         ti.IsPublic &&
+                                         typeof (TImplementee).IsAssignableFrom(ti) &&
+                                         !typeNamesToExclude.ContainsKey(ti.FullName)));
+                }
+                catch (ReflectionTypeLoadException)
+                {
+                }
+                catch (FileNotFoundException)
+                {
+                    // This typically arises when reflection over a type causes not-deployed-dlls to be requested.
+                    // E.g. Unity implements IServiceLocator, but normally doesn't use it. When we're reflecting
+                    // over it, it (.NET) tries to locate the assembly to provide the information, but this fails.
+                    // We allow ourselves to ignore that.
+                }
+            }
+
+            var composerTypes = exportedTypes
+                .Distinct()
+                .ToList();
+            return composerTypes;
         }
     }
 }

@@ -21,8 +21,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{71D5F658
 		nuget\SoftwarePassion.Common.Core.nuspec = nuget\SoftwarePassion.Common.Core.nuspec
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorHandling", "ErrorHandling\ErrorHandling.csproj", "{EBE96F94-BF5B-4DBC-B047-F354AE025588}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,10 +43,6 @@ Global
 		{B22346F6-1272-4FB4-98F1-2B3BAF33E5B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B22346F6-1272-4FB4-98F1-2B3BAF33E5B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B22346F6-1272-4FB4-98F1-2B3BAF33E5B9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EBE96F94-BF5B-4DBC-B047-F354AE025588}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EBE96F94-BF5B-4DBC-B047-F354AE025588}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EBE96F94-BF5B-4DBC-B047-F354AE025588}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EBE96F94-BF5B-4DBC-B047-F354AE025588}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

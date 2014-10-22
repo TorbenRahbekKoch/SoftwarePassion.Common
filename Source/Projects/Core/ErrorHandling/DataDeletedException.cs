@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SoftwarePassion.Common.Core.Extensions;
 
-namespace SoftwarePassion.Common.ErrorHandling
+namespace SoftwarePassion.Common.Core.ErrorHandling
 {
     /// <summary>
-    /// Exception thrown by the Data Access Layer when trying to update data that has been deleted.
+    /// Exception thrown when trying to update data that has been deleted.
     /// </summary>
     [Serializable]
     public class DataDeletedException : DataUpdatedException

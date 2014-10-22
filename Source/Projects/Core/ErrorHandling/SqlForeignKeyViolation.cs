@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
-namespace SoftwarePassion.Common.ErrorHandling
+namespace SoftwarePassion.Common.Core.ErrorHandling
 {
     /// <summary>
     /// Parses/converts a sqlExceptionNumber and exception message into a SqlForeignKeyViolation structure
@@ -44,8 +40,8 @@ namespace SoftwarePassion.Common.ErrorHandling
                 if (fkIndex > 0)
                 {
                     // Sample:
-                    // The INSERT statement conflicted with the FOREIGN KEY constraint "FK_SystemApplication_SystemOwner". The 
-                    // conflict occurred in database "Servicekatalog_IntegrationTest", table "dbo.SystemOwner", column 'Id'.
+                    // The INSERT statement conflicted with the FOREIGN KEY constraint "FK_OneTable_AnotherTable". The 
+                    // conflict occurred in database "AnAmazingDatabase", table "dbo.AnotherTable", column 'Id'.
 
                     var nextUnderscore = exceptionViolationMessage.IndexOf("_", fkIndex + 4, StringComparison.OrdinalIgnoreCase);
                     var localTable = exceptionViolationMessage.Substring(fkIndex + 4, nextUnderscore - fkIndex - 4);

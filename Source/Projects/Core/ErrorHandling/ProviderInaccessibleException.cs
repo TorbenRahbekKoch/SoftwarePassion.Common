@@ -5,13 +5,12 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Security;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace SoftwarePassion.Common.ErrorHandling
+namespace SoftwarePassion.Common.Core.ErrorHandling
 {
     /// <summary>
     /// Thrown when the provider (e.g. service or database) is not available for performing the requested operation,
-    /// due to some error, which cannot be narrowed down.
+    /// due to some unspecified error, which cannot be narrowed down.
     /// </summary>
     [Serializable]
     public class ProviderInaccessibleException : UnrecoverableException

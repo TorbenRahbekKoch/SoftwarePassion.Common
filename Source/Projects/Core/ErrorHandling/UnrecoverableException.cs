@@ -2,7 +2,7 @@
 using System.Diagnostics.Contracts;
 using System.Runtime.Serialization;
 
-namespace SoftwarePassion.Common.ErrorHandling
+namespace SoftwarePassion.Common.Core.ErrorHandling
 {
     /// <summary>
     /// This signals that the error that happened cannot be recovered (at least
