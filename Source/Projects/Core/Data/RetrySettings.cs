@@ -10,13 +10,13 @@ namespace SoftwarePassion.Common.Core.Data
         /// <summary>
         /// Convenience method for creating RetrySettings
         /// </summary>
-        /// <param name="coolOffPeriod">The cool off period.</param>
-        /// <param name="innerRetryCount">The inner retry count.</param>
-        /// <param name="outerRetryCount">The outer retry count.</param>
+        /// <param name="retryCount">The inner retry count.</param>
+        /// <param name="coolOffPeriod">The first cool off period.</param>
+        /// <param name="coolOffPeriodAdjustmentFactor">The factor with which to adjust the coolOffPeriod after a failed attempt.</param>
         /// <returns>The created RetrySettings.</returns>
-        public static RetrySettings Create(TimeSpan coolOffPeriod, int innerRetryCount, int outerRetryCount)
+        public static RetrySettings Create(int retryCount, TimeSpan coolOffPeriod, float coolOffPeriodAdjustmentFactor)
         {
-            return new RetrySettings(coolOffPeriod, innerRetryCount, outerRetryCount);
+            return new RetrySettings(retryCount, coolOffPeriod, coolOffPeriodAdjustmentFactor);
         }
 
         /// <summary>
@@ -25,24 +25,23 @@ namespace SoftwarePassion.Common.Core.Data
         public TimeSpan CoolOffPeriod { get; private set; }
 
         /// <summary>
-        /// Gets the inner retry count - this is the number of retries attempted without any pause in between.
+        /// Gets the retry count - this is the maximum number of retries attempted.
         /// </summary>
-        public int InnerRetryCount { get; private set; }
+        public int RetryCount { get; private set; }
 
         /// <summary>
-        /// Gets the outer retry count. The CoolOffPeriod elapses between each of these retries. And 
-        /// for each of these retry attemps, InnerRetryCount attempts are made.
+        /// Gets the adjustment factor for the CoolOffPeriod. The CoolOffPeriod
+        /// is adjusted between retries by multiplying itself with the factor.
+        /// This is a cumulative process. Each new value is multiplied with the
+        /// factor on further retries.
         /// </summary>
-        /// <value>
-        /// The outer retry count.
-        /// </value>
-        public int OuterRetryCount { get; private set; }
+        public float CoolOffPeriodAdjustmentFactor{ get; private set; }
 
-        private RetrySettings(TimeSpan coolOffPeriod, int innerRetryCount, int outerRetryCount)
+        private RetrySettings(int retryCount, TimeSpan coolOffPeriod, float coolOffPeriodAdjustmentFactor)
         {
+            RetryCount = retryCount;
             CoolOffPeriod = coolOffPeriod;
-            InnerRetryCount = innerRetryCount;
-            OuterRetryCount = outerRetryCount;
+            CoolOffPeriodAdjustmentFactor = coolOffPeriodAdjustmentFactor;
         }
     }
 }

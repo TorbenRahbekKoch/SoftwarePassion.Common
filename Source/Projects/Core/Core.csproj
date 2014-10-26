@@ -168,6 +168,7 @@
     <Compile Include="ErrorHandling\NoDataException.cs" />
     <Compile Include="ErrorHandling\ProviderInaccessibleException.cs" />
     <Compile Include="ErrorHandling\RecoverableException.cs" />
+    <Compile Include="ErrorHandling\RetryHandler.cs" />
     <Compile Include="ErrorHandling\SqlErrorCodes.cs" />
     <Compile Include="ErrorHandling\SqlForeignKeyViolation.cs" />
     <Compile Include="ErrorHandling\TimeoutException.cs" />

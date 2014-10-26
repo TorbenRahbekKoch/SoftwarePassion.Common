@@ -18,7 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{71D5F658-A31D-4BD7-BF73-A73244762915}"
 	ProjectSection(SolutionItems) = preProject
-		nuget\SoftwarePassion.Common.Core.nuspec = nuget\SoftwarePassion.Common.Core.nuspec
+		Source\Projects\Core\Core.nuspec = Source\Projects\Core\Core.nuspec
 	EndProjectSection
 EndProject
 Global

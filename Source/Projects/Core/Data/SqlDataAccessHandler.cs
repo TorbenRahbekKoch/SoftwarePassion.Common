@@ -30,7 +30,7 @@ namespace SoftwarePassion.Common.Core.Data
     public class SqlDataAccessHandler<TReturn>
     {
         /// <summary>
-        /// Executes the specified sql action with the specified settings. This is 
+        /// Executes the specified sql action with the given retry settings. This is 
         /// for Sql statements which do not return any value.
         /// </summary>
         /// <param name="retrySettings">The retry settings.</param>
@@ -71,7 +71,7 @@ namespace SoftwarePassion.Common.Core.Data
         }
 
         /// <summary>
-        /// Instantiates a SqlDataAccessHandlerImplementation of type TReturn.
+        /// Instantiates a SqlDataAccessHandler of type TReturn.
         /// </summary>
         /// <param name="retrySettings">The retry settings.</param>
         /// <param name="methodDescriptor">The method descriptor. Used for error logging.</param>
@@ -91,6 +91,7 @@ namespace SoftwarePassion.Common.Core.Data
             this.methodDescriptor = methodDescriptor;
             this.awaitableAction = awaitableAction;
         }
+
         /// <summary>
         /// Tries to execute the guarded code.
         /// </summary>
@@ -105,8 +106,9 @@ namespace SoftwarePassion.Common.Core.Data
         /// RecoverableException.</remarks>
         public async Task<TReturn> Execute()
         {
+            var coolOffPeriod = retrySettings.CoolOffPeriod;
             int tryNumber = 0;
-            Func<bool> retryThresholdReached = () => tryNumber >= retrySettings.OuterRetryCount;
+            Func<bool> retryThresholdReached = () => tryNumber >= retrySettings.RetryCount;
             var exceptionsCaught = new List<Exception>();
 
             while (!retryThresholdReached())
@@ -187,6 +189,7 @@ namespace SoftwarePassion.Common.Core.Data
                 }
 
                 await Task.Delay(retrySettings.CoolOffPeriod);
+
             }
 
             // We have exceeded the retryCount so report that we cannot access the provider
