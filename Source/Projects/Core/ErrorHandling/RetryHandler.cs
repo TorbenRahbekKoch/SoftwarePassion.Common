@@ -30,6 +30,8 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
         /// <param name="parameterDescriptor">The parameter descriptor.</param>
         /// <param name="action">The action to automatically retry.</param>
         /// <returns>Task.</returns>
+        /// <exception cref="ProviderInaccessibleException">When unsuccessful. Examine InnerExceptions
+        /// for details.</exception>
         public static Task Execute(
             RetrySettings retrySettings,
             Func<string> parameterDescriptor,
@@ -52,6 +54,8 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
         /// <param name="parameterDescriptor">The parameter descriptor.</param>
         /// <param name="action">The action to automatically retry.</param>
         /// <returns>A Task which will have the resulting value when done.</returns>
+        /// <exception cref="ProviderInaccessibleException">When unsuccessful. Examine InnerExceptions
+        /// for details.</exception>
         public static async Task<TReturnType> Execute<TReturnType>(
             RetrySettings retrySettings,
             Func<string> parameterDescriptor,

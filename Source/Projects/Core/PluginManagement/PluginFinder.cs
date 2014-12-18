@@ -79,7 +79,7 @@ namespace SoftwarePassion.Common.Core.PluginManagement
                 if (composerTypes.Count() > 1)
                 {
                     throw new InvalidOperationException(
-                        "To many ({0}) implementations of '{1}' found: '{2}'. ".FormatInvariant(
+                        "Too many ({0}) implementations of '{1}' found: '{2}'. ".FormatInvariant(
                             composerTypes.Count(),
                             typeof(TImplementee).FullName,
                             string.Join(
