@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Source\Projects\Core\Core.csproj", "{DF241F73-E055-4A9B-A6B5-E2061259C4CE}"
 EndProject
@@ -19,6 +19,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{71D5F658-A31D-4BD7-BF73-A73244762915}"
 	ProjectSection(SolutionItems) = preProject
 		Source\Projects\Core\Core.nuspec = Source\Projects\Core\Core.nuspec
+		Source\Projects\Core.Wcf\Core.Wcf.nuspec = Source\Projects\Core.Wcf\Core.Wcf.nuspec
 	EndProjectSection
 EndProject
 Global
