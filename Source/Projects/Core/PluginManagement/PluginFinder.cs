@@ -117,6 +117,7 @@ namespace SoftwarePassion.Common.Core.PluginManagement
             Contract.Requires(assembliesToSearch != null);
             Contract.Requires(exportedTypes!= null);
 
+            var implementeeType = typeof (TImplementee);
             foreach (var assembly in assembliesToSearch)
             {
                 try
@@ -126,7 +127,7 @@ namespace SoftwarePassion.Common.Core.PluginManagement
                             .Where(ti => ti.IsClass &&
                                          !ti.IsAbstract &&
                                          ti.IsPublic &&
-                                         typeof (TImplementee).IsAssignableFrom(ti) &&
+                                         implementeeType.IsAssignableFrom(ti) &&
                                          !typeNamesToExclude.ContainsKey(ti.FullName)));
                 }
                 catch (ReflectionTypeLoadException)
