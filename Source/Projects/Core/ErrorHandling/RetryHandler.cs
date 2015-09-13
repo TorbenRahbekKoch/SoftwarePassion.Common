@@ -31,7 +31,29 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
         /// <returns>Task.</returns>
         /// <exception cref="ProviderInaccessibleException">When unsuccessful. Examine InnerExceptions
         /// for details.</exception>
-        public static Task Execute(
+        public static void Execute(
+            RetrySettings retrySettings,
+            Action action)
+        {
+            Contract.Requires(retrySettings != null);
+            Contract.Requires(action != null);
+
+            var handler = new RetryHandler<bool>(
+                retrySettings,
+                () => { action(); return Task.FromResult(false); });
+
+                handler.ExecuteAsync().GetAwaiter();
+        }
+
+        /// <summary>
+        /// Asynchronously executes the specified action with the given retry settings.
+        /// </summary>
+        /// <param name="retrySettings">The retry settings.</param>
+        /// <param name="action">The action to automatically retry.</param>
+        /// <returns>Task.</returns>
+        /// <exception cref="ProviderInaccessibleException">When unsuccessful. Examine InnerExceptions
+        /// for details.</exception>
+        public static Task ExecuteAsync(
             RetrySettings retrySettings,
             Func<Task> action)
         {
@@ -41,20 +63,20 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
             return new RetryHandler<bool>(
                 retrySettings,
                 async () => { await action(); return true; })
-                .Execute();
+                .ExecuteAsync();
         }
 
         /// <summary>
-        /// Executes the specified action with the given retry settings.
+        /// Asynchronously executes the specified action with the given retry settings.
         /// </summary>
         /// <param name="retrySettings">The retry settings.</param>
-        /// <param name="parameterDescriptor">The parameter descriptor.</param>
+        /// <param name="parameterDescriptor">Not used.</param>
         /// <param name="action">The action to automatically retry.</param>
         /// <returns>Task.</returns>
         /// <exception cref="ProviderInaccessibleException">When unsuccessful. Examine InnerExceptions
         /// for details.</exception>
         [Obsolete("Will be removed in a later version. Use overload without parameterDescripter.")]
-        public static Task Execute(
+        public static Task ExecuteAsync(
             RetrySettings retrySettings,
             Func<string> parameterDescriptor,
             Func<Task> action)
@@ -65,7 +87,7 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
             return new RetryHandler<bool>(
                 retrySettings,
                 async () => { await action(); return true; })
-                .Execute();
+                .ExecuteAsync();
         }
 
         /// <summary>
@@ -76,7 +98,29 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
         /// <returns>A Task which will have the resulting value when done.</returns>
         /// <exception cref="ProviderInaccessibleException">When unsuccessful. Examine InnerExceptions
         /// for details.</exception>
-        public static async Task<TReturnType> Execute<TReturnType>(
+        public static TReturnType Execute<TReturnType>(
+            RetrySettings retrySettings,
+            Func<TReturnType> action)
+        {
+            Contract.Requires(retrySettings != null);
+            Contract.Requires(action != null);
+
+            var handler = new RetryHandler<TReturnType>(
+                retrySettings,
+                () => Task.FromResult(action()));
+
+            return handler.ExecuteAsync().GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// Asynchronously executes the specified action with the given retry settings.
+        /// </summary>
+        /// <param name="retrySettings">The retry settings.</param>
+        /// <param name="action">The action to automatically retry.</param>
+        /// <returns>A Task which will have the resulting value when done.</returns>
+        /// <exception cref="ProviderInaccessibleException">When unsuccessful. Examine InnerExceptions
+        /// for details.</exception>
+        public static async Task<TReturnType> ExecuteAsync<TReturnType>(
             RetrySettings retrySettings,
             Func<Task<TReturnType>> action)
         {
@@ -86,20 +130,20 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
             return await new RetryHandler<TReturnType>(
                 retrySettings,
                 action)
-                .Execute();
+                .ExecuteAsync();
         }
 
         /// <summary>
-        /// Executes the specified action with the given retry settings.
+        /// Asynchronously executes the specified action with the given retry settings.
         /// </summary>
         /// <param name="retrySettings">The retry settings.</param>
-        /// <param name="parameterDescriptor">The parameter descriptor.</param>
+        /// <param name="parameterDescriptor">Not used.</param>
         /// <param name="action">The action to automatically retry.</param>
         /// <returns>A Task which will have the resulting value when done.</returns>
         /// <exception cref="ProviderInaccessibleException">When unsuccessful. Examine InnerExceptions
         /// for details.</exception>
         [Obsolete("Will be removed in a later version. Use overload without parameterDescriptor.")]
-        public static async Task<TReturnType> Execute<TReturnType>(
+        public static async Task<TReturnType> ExecuteAsync<TReturnType>(
             RetrySettings retrySettings,
             Func<string> parameterDescriptor,
             Func<Task<TReturnType>> action)
@@ -110,7 +154,7 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
             return await new RetryHandler<TReturnType>(
                 retrySettings,
                 action)
-                .Execute();
+                .ExecuteAsync();
         }
 
         /// <summary>
@@ -119,7 +163,7 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
         /// <param name="retrySettings">The retry settings.</param>
         /// <param name="awaitableAction">The data access code that should be guarded.</param>
         /// <exception cref="System.ArgumentNullException">
-        /// parameterDescriptor or action
+        /// retrySettings or awaitableAction
         /// </exception>
         public RetryHandler(
             RetrySettings retrySettings,
@@ -136,7 +180,7 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
         /// Instantiates a RetryHandler of type TReturn.
         /// </summary>
         /// <param name="retrySettings">The retry settings.</param>
-        /// <param name="parameterDescriptor">The method descriptor. Used as message on some ProviderInaccessibleExceptions.</param>
+        /// <param name="parameterDescriptor">Not used.</param>
         /// <param name="awaitableAction">The data access code that should be guarded.</param>
         /// <exception cref="System.ArgumentNullException">
         /// parameterDescriptor or action
@@ -159,9 +203,9 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
         /// Tries to execute the guarded code.
         /// </summary>
         /// <returns>The value of type TReturn, when successful.</returns>
-        /// <exception cref="ProviderInaccessibleException">When unsuccessful. Examine InnerExceptions
-        /// for details.</exception>
-        public async Task<TReturn> Execute()
+        /// <exception cref="ProviderInaccessibleException">When unsuccessful. 
+        /// Examine InnerExceptions for details.</exception>
+        public async Task<TReturn> ExecuteAsync()
         {
             int tryNumber = 0;
             var coolOffPeriod = retrySettings.CoolOffPeriod;
