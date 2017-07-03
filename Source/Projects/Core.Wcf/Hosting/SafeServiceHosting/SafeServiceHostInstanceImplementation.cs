@@ -30,6 +30,7 @@ namespace SoftwarePassion.Common.Core.Wcf.Hosting.SafeServiceHosting
             StopListen();
 
             serviceHost = new ServiceHost(singletonInstance, baseAddresses);
+            serviceHost.Faulted += HostFaulted;
             serviceHost.Open();
         }
 
