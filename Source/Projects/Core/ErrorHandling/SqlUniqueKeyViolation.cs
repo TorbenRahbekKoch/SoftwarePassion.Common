@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
 
 namespace SoftwarePassion.Common.Core.ErrorHandling
 {
@@ -23,8 +22,6 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
         /// <exception cref="System.ArgumentNullException">exceptionViolationMessage</exception>
         public static SqlUniqueKeyViolation Parse(int sqlExceptionNumber, string exceptionViolationMessage)
         {
-            Contract.Requires(exceptionViolationMessage != null);
-
             if (sqlExceptionNumber == SqlErrorCodes.UniqueConstraint)
             {
                 // Violation of %ls constraint '%.*ls'. Cannot insert duplicate key in object '%.*ls'. The duplicate key value is %ls.
@@ -47,8 +44,6 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
                     return new SqlUniqueKeyViolation(tableName, keyName, value);
                 }
             }
-
-            Contract.Assume(sqlExceptionNumber == SqlErrorCodes.UniqueIndexConstraint);
 
             // Cannot insert duplicate key row in object '%.*ls' with unique index '%.*ls'. The duplicate key value is %ls.
             {

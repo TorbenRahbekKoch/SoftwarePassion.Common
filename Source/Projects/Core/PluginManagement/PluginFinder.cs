@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -31,9 +30,6 @@ namespace SoftwarePassion.Common.Core.PluginManagement
             params object[] constructorParameters) 
             where TImplementee : class
         {
-            Contract.Requires(configuration != null);
-            Contract.Ensures(Contract.Result<TImplementee>() != null);
-            
             foreach (var assemblyName in configuration.AssembliesToLoadExplicitly)
             {
                 AppDomain.CurrentDomain.Load(assemblyName);
@@ -114,9 +110,6 @@ namespace SoftwarePassion.Common.Core.PluginManagement
         private static List<TypeInfo> AddPossibleComposerTypes<TImplementee>(IList<Assembly> assembliesToSearch, List<TypeInfo> exportedTypes,
             Dictionary<string, Type> typeNamesToExclude) where TImplementee : class
         {
-            Contract.Requires(assembliesToSearch != null);
-            Contract.Requires(exportedTypes!= null);
-
             var implementeeType = typeof (TImplementee);
             foreach (var assembly in assembliesToSearch)
             {

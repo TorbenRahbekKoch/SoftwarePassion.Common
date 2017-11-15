@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Reflection;
 
 namespace SoftwarePassion.Common.Core.PluginManagement
@@ -25,11 +24,6 @@ namespace SoftwarePassion.Common.Core.PluginManagement
             IList<AssemblyName> assembliesToLoadExplicitly, 
             Option<string> typeToExplicitlyLookFor)
         {
-            Contract.Requires(typesToExclude != null);
-            Contract.Requires(assembliesToExclude != null);
-            Contract.Requires(assembliesToLoadExplicitly != null);
-            Contract.Requires(typeToExplicitlyLookFor != null);
-            
             TypeToExplicitlyLookFor = typeToExplicitlyLookFor;
             TypesToExclude = typesToExclude;
             ExcludeSystemAssemblies = excludeSystemAssemblies;

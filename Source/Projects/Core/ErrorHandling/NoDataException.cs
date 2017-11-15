@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
 using System.Runtime.Serialization;
 
 namespace SoftwarePassion.Common.Core.ErrorHandling
@@ -42,7 +41,6 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
         protected NoDataException(SerializationInfo serializationInfo, StreamingContext context)
             : base(serializationInfo, context)
         {
-            Contract.Requires(serializationInfo != null);
         }
     }
 }

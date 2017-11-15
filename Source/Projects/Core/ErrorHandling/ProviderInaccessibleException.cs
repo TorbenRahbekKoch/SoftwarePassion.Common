@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Security;
@@ -62,8 +61,6 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
         public ProviderInaccessibleException(IEnumerable<Exception> innerExceptions)
             : base(string.Empty, innerExceptions.FirstOrDefault())
         {
-            Contract.Requires(innerExceptions != null);
-
             InnerExceptions = innerExceptions.ToList();
         }
 
@@ -75,8 +72,6 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
         public ProviderInaccessibleException(string message, IEnumerable<Exception> innerExceptions)
             : base(message, innerExceptions.FirstOrDefault())
         {
-            Contract.Requires(innerExceptions != null);
-
             InnerExceptions = innerExceptions.ToList();
         }
 
@@ -93,8 +88,6 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
         protected ProviderInaccessibleException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
-            Contract.Requires(info != null);
-
             InnerExceptions = info.GetValue(InnerExceptionsKey, typeof(IEnumerable<Exception>)) as IEnumerable<Exception>;
         }
 
@@ -110,8 +103,6 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
         [SecurityCritical]
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            Contract.Requires(InnerExceptions != null);
-
             base.GetObjectData(info, context);
             info.AddValue(InnerExceptionsKey, InnerExceptions, InnerExceptions.GetType());
         }
@@ -125,9 +116,6 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
         /// <PermissionSet><IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" PathDiscovery="*AllFiles*"/></PermissionSet>
         public override string ToString()
         {
-            Contract.Assume(InnerExceptions != null);
-            Contract.Assume(Contract.ForAll(InnerExceptions, ie => ie != null));
-
             var builder = new StringBuilder(InnerExceptions.Count() * 512);
 
             builder.AppendLine(Message);

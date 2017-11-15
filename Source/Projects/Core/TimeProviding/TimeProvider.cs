@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
 
 namespace SoftwarePassion.Common.Core.TimeProviding
 {
@@ -50,10 +49,6 @@ namespace SoftwarePassion.Common.Core.TimeProviding
         /// <returns>The created DateTime.</returns>
         public static DateTime CreateUtc(int year, int month, int day)
         {
-            Contract.Requires(year >= 1 && year <= 9999);
-            Contract.Requires(month >= 1 && month <= 12);
-            Contract.Requires(day >= 1 && day <= 31);
-
             return DateTime.SpecifyKind(new DateTime(year, month, day), DateTimeKind.Utc);
         }
 
@@ -69,13 +64,6 @@ namespace SoftwarePassion.Common.Core.TimeProviding
         /// <returns></returns>
         public static DateTime CreateUtc(int year, int month, int day, int hour, int minute, int second)
         {
-            Contract.Requires(year >= 1 && year <= 9999);
-            Contract.Requires(month >= 1 && month <= 12);
-            Contract.Requires(day >= 1 && day <= 31);
-            Contract.Requires(hour >= 0 && hour <= 24);
-            Contract.Requires(minute >= 0 && minute <= 60);
-            Contract.Requires(second >= 0 && second <= 60);
-
             return DateTime.SpecifyKind(new DateTime(year, month, day, hour, minute, second), DateTimeKind.Utc);
         }
 
@@ -92,14 +80,6 @@ namespace SoftwarePassion.Common.Core.TimeProviding
         /// <returns></returns>
         public static DateTime CreateUtc(int year, int month, int day, int hour, int minute, int second, int millisecond)
         {
-            Contract.Requires(year >= 1 && year <= 9999);
-            Contract.Requires(month >= 1 && month <= 12);
-            Contract.Requires(day >= 1 && day <= 31);
-            Contract.Requires(hour >= 0 && hour <= 24);
-            Contract.Requires(minute >= 0 && minute <= 60);
-            Contract.Requires(second >= 0 && second <= 60);
-            Contract.Requires(millisecond >= 0 && millisecond < 1000);
-
             return DateTime.SpecifyKind(new DateTime(year, month, day, hour, minute, second, millisecond), DateTimeKind.Utc);
         }
 

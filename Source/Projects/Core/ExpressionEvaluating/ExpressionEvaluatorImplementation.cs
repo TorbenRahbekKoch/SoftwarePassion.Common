@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -10,9 +9,6 @@ namespace SoftwarePassion.Common.Core.ExpressionEvaluating
     {
         public ExpressionEvaluatorImplementation(string expression, IEnumerable<bool> criteriaValues)
         {
-            Contract.Requires(expression != null);
-            Contract.Requires(criteriaValues != null);
-
             this.expression = expression.Trim();
             this.criteriaValues = new List<bool>(criteriaValues);
         }
@@ -210,16 +206,6 @@ namespace SoftwarePassion.Common.Core.ExpressionEvaluating
             }
 
             return true;
-        }
-
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(expression != null);
-            Contract.Invariant(criteriaValues != null);
-            Contract.Invariant(operandStack != null);
-            Contract.Invariant(operatorStack != null);
-            Contract.Invariant(regexp != null);
         }
 
         private readonly string expression;

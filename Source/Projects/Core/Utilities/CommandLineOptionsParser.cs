@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Linq;
 using SoftwarePassion.Common.Core.Extensions;
@@ -24,10 +23,6 @@ namespace SoftwarePassion.Common.Core.Utilities
             IEnumerable<string> allowedOptions, 
             IEnumerable<string> optionPrefixes)
         {
-            Contract.Requires(commandLine != null);
-            Contract.Requires(allowedOptions != null);
-            Contract.Requires(optionPrefixes != null);
-
             this.commandLine = new List<string>(commandLine);
             this.allowedOptions = new List<string>(allowedOptions);
             this.optionPrefixes = new List<string>(optionPrefixes);
@@ -45,8 +40,6 @@ namespace SoftwarePassion.Common.Core.Utilities
         public CommandLineOptionsParser(IEnumerable<string> commandLine, IEnumerable<string> allowedOptions)
             : this(commandLine, allowedOptions, new string[] {})
         {
-            Contract.Requires(commandLine != null);
-            Contract.Requires(allowedOptions != null);
         }
 
         /// <summary>
@@ -58,7 +51,6 @@ namespace SoftwarePassion.Common.Core.Utilities
         public CommandLineOptionsParser(IEnumerable<string> commandLine)
             : this(commandLine, new string[] {}, new string[] {})
         {
-            Contract.Requires(commandLine != null);
         }
 
         /// <summary>
@@ -69,8 +61,6 @@ namespace SoftwarePassion.Common.Core.Utilities
         /// <exception cref="System.IndexOutOfRangeException">When the given optionName does not exist.</exception>
         public string GetValue(string optionName)
         {
-            Contract.Requires(!string.IsNullOrWhiteSpace(optionName));
-
             string value;
             if (!commandLineOptions.TryGetValue(optionName, out value))
                 throw  new IndexOutOfRangeException("Option {0} does not exist.".FormatInvariant(optionName));
@@ -86,8 +76,6 @@ namespace SoftwarePassion.Common.Core.Utilities
         /// <returns></returns>
         public string GetValue(string optionName, string defaultValue)
         {
-            Contract.Requires(!string.IsNullOrWhiteSpace(optionName));
-
             string optionValue;
             if (!commandLineOptions.TryGetValue(optionName, out optionValue))
                 return defaultValue;
@@ -110,8 +98,6 @@ namespace SoftwarePassion.Common.Core.Utilities
 
         private void ProcessOption(string option, string value)
         {
-            Contract.Requires(!string.IsNullOrWhiteSpace(option));
-
             var actualOption = option;
             foreach (var prefix in optionPrefixes)
             {
@@ -127,12 +113,6 @@ namespace SoftwarePassion.Common.Core.Utilities
                 throw  new IndexOutOfRangeException("Option {0} is not allowed.".FormatInvariant(option));
             
             commandLineOptions[actualOption] = value;
-        }
-
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(commandLineOptions!= null);
         }
 
         private readonly Dictionary<string, string> commandLineOptions = new Dictionary<string, string>();

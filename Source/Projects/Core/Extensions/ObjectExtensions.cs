@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
 using System.Linq.Expressions;
 
 namespace SoftwarePassion.Common.Core.Extensions
@@ -28,8 +27,6 @@ namespace SoftwarePassion.Common.Core.Extensions
             Expression<Func<TClass, TProperty>> action) 
             where TClass : class
         {
-            Contract.Requires(action != null);
-
             var expression = (MemberExpression)action.Body;
             string name = expression.Member.Name;
 

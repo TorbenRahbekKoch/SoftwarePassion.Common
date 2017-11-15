@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Threading.Tasks;
 using SoftwarePassion.Common.Core.Data;
 
@@ -35,9 +34,6 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
             RetrySettings retrySettings,
             Action action)
         {
-            Contract.Requires(retrySettings != null);
-            Contract.Requires(action != null);
-
             var handler = new RetryHandler<bool>(
                 retrySettings,
                 () => { action(); return Task.FromResult(false); });
@@ -57,9 +53,6 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
             RetrySettings retrySettings,
             Func<Task> action)
         {
-            Contract.Requires(retrySettings != null);
-            Contract.Requires(action != null);
-
             return new RetryHandler<bool>(
                 retrySettings,
                 async () => { await action(); return true; })
@@ -81,9 +74,6 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
             Func<string> parameterDescriptor,
             Func<Task> action)
         {
-            Contract.Requires(retrySettings != null);
-            Contract.Requires(action != null);
-
             return new RetryHandler<bool>(
                 retrySettings,
                 async () => { await action(); return true; })
@@ -102,9 +92,6 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
             RetrySettings retrySettings,
             Func<TReturnType> action)
         {
-            Contract.Requires(retrySettings != null);
-            Contract.Requires(action != null);
-
             var handler = new RetryHandler<TReturnType>(
                 retrySettings,
                 () => Task.FromResult(action()));
@@ -124,9 +111,6 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
             RetrySettings retrySettings,
             Func<Task<TReturnType>> action)
         {
-            Contract.Requires(retrySettings != null);
-            Contract.Requires(action != null);
-
             return await new RetryHandler<TReturnType>(
                 retrySettings,
                 action)
@@ -148,9 +132,6 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
             Func<string> parameterDescriptor,
             Func<Task<TReturnType>> action)
         {
-            Contract.Requires(retrySettings != null);
-            Contract.Requires(action != null);
-
             return await new RetryHandler<TReturnType>(
                 retrySettings,
                 action)
@@ -169,9 +150,6 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
             RetrySettings retrySettings,
             Func<Task<TReturn>> awaitableAction)
         {
-            Contract.Requires(retrySettings != null);
-            Contract.Requires(awaitableAction != null);
-
             this.retrySettings = retrySettings;
             this.awaitableAction = awaitableAction;
         }
@@ -191,10 +169,6 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
             Func<string> parameterDescriptor,
             Func<Task<TReturn>> awaitableAction)
         {
-            Contract.Requires(retrySettings != null);
-            Contract.Requires(parameterDescriptor != null);
-            Contract.Requires(awaitableAction != null);
-
             this.retrySettings = retrySettings;
             this.awaitableAction = awaitableAction;
         }

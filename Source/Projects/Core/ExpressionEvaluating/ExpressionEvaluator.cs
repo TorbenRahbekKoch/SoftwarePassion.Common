@@ -1,4 +1,3 @@
-using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -18,9 +17,6 @@ namespace SoftwarePassion.Common.Core.ExpressionEvaluating
         /// <returns>A boolean value representing the result</returns>
         public static bool Evaluate(string expression, IEnumerable<bool> criteriaValues)
         {
-            Contract.Requires(!string.IsNullOrWhiteSpace(expression));
-            Contract.Requires(criteriaValues != null);
-
             var evaluator = new ExpressionEvaluatorImplementation(expression, criteriaValues);
             return evaluator.Eval();
         }

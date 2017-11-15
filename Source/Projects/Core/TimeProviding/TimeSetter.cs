@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
 
 namespace SoftwarePassion.Common.Core.TimeProviding
 {
@@ -27,8 +26,6 @@ namespace SoftwarePassion.Common.Core.TimeProviding
         /// <param name="timeProvider">The time provider to set as current TimeProvider.</param>
         public TimeSetter(TimeProvider timeProvider)
         {
-            Contract.Requires(timeProvider != null);
-
             previousProvider = TimeProvider.Current;
             TimeProvider.Current = timeProvider;
         }
@@ -41,7 +38,6 @@ namespace SoftwarePassion.Common.Core.TimeProviding
         public TimeSetter(Func<DateTime> timeProvider)
             : this(new TimeProviderAction(timeProvider))
         {
-            Contract.Requires(timeProvider != null);
         }
 
         /// <summary>
