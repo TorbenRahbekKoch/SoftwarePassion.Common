@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
 using System.Runtime.Serialization;
 using System.Security;
 
@@ -65,8 +64,6 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
         protected ForeignKeyException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
-            Contract.Requires(info != null);
-
             LocalEntity = info.GetString(LocalEntityKey);
             ForeignEntity = info.GetString(ForeignEntityKey);
             ForeignColumn = info.GetString(ForeignColumnKey);

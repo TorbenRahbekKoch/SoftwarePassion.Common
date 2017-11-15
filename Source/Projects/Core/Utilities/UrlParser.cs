@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.Contracts;
 
 namespace SoftwarePassion.Common.Core.Utilities
 {
@@ -52,8 +51,6 @@ namespace SoftwarePassion.Common.Core.Utilities
         /// <returns></returns>
         public static UrlParts SplitUrl(Uri uri)
         {
-            Contract.Requires(uri != null);
-
             UrlParts urlParts = AssignParts(uri);
 
             // There are two markers that are definitive.
@@ -99,8 +96,6 @@ namespace SoftwarePassion.Common.Core.Utilities
 
         private static UrlParts AssignParts(Uri uri)
         {
-            Contract.Requires(uri != null);
-
             // Get the full content path 
             string path = uri.AbsolutePath;
             if (path.Length > 1 && path[0] == '/')

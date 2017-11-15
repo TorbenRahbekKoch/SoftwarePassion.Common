@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
 using System.Runtime.Serialization;
 using System.Security;
 
@@ -50,8 +49,6 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
         protected DuplicateKeyException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
-            Contract.Requires(info != null);
-
             EntityName = info.GetString(EntityNameKey);
             DuplicateFieldName = info.GetString(DuplicateFieldNameKey);
             DuplicateFieldValue = info.GetString(DuplicateFieldValueKey);

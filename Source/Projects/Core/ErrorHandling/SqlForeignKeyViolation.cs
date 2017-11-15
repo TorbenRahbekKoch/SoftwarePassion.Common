@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
 using System.Text.RegularExpressions;
 
 namespace SoftwarePassion.Common.Core.ErrorHandling
@@ -32,8 +31,6 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
         /// <returns></returns>
         public static SqlForeignKeyViolation Parse(int sqlExceptionNumber, string exceptionViolationMessage)
         {
-            Contract.Requires(exceptionViolationMessage != null);
-
             if (sqlExceptionNumber == SqlErrorCodes.ForeignKeyConstraint)
             {
                 var fkIndex = exceptionViolationMessage.IndexOf("\"FK_", StringComparison.OrdinalIgnoreCase);

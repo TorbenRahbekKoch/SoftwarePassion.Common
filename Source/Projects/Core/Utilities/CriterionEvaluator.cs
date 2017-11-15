@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
 using System.Text.RegularExpressions;
 using System.Globalization;
 
@@ -69,8 +68,6 @@ namespace SoftwarePassion.Common.Core.Utilities
         /// <exception cref="System.Exception">Illegal operator  + matchOperator</exception>
         public static bool EvaluateCriterion(string leftOperand, string matchOperator, string rightOperand, Case caseSensitive, CultureInfo cultureInfo)
         {
-            Contract.Requires(cultureInfo != null);
-
             CompareOptions compareOptions = caseSensitive == Case.Sensitive 
                 ? CompareOptions.None 
                 : CompareOptions.IgnoreCase;            

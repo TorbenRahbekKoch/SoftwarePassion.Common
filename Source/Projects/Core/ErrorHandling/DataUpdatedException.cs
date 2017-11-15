@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
 using System.Runtime.Serialization;
 using System.Security;
 using SoftwarePassion.Common.Core.Extensions;
@@ -61,8 +60,6 @@ namespace SoftwarePassion.Common.Core.ErrorHandling
         protected DataUpdatedException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
-            Contract.Requires(info != null);
-
             EntityName = info.GetString(EntityNameKey);
             Id = info.GetString(IdKey);
         }

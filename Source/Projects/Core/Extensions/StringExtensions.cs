@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -16,7 +15,6 @@ namespace SoftwarePassion.Common.Core.Extensions
         /// </summary>
         /// <param name="value">The string value to check.</param>
         /// <returns>A boolean indicating whether the string could be parsed as a Guid. A null string results in false.</returns>
-        [Pure]
         public static bool IsGuid(this string value)
         {
             if (!value.HasContent())
@@ -32,11 +30,8 @@ namespace SoftwarePassion.Common.Core.Extensions
         /// <param name="value">The value with a Uri.</param>
         /// <returns>The parsed Uri.</returns>
         /// <exception cref="UriFormatException">If the value cannot be parsed as a Uri.</exception>
-        [Pure]
         public static Uri Uri(this string value)
         {
-            Contract.Requires(value != null);
-
             return new Uri(value);
         }
 
@@ -45,7 +40,6 @@ namespace SoftwarePassion.Common.Core.Extensions
         /// </summary>
         /// <param name="value">The string value to check.</param>
         /// <returns>A boolean indicating whether the string has content. A null string results in false.</returns>
-        [Pure]
         public static bool HasContent(this string value)
         {
             return (value != null) && (!string.IsNullOrWhiteSpace(value));
@@ -56,7 +50,6 @@ namespace SoftwarePassion.Common.Core.Extensions
         /// </summary>
         /// <param name="value">The string value to check.</param>
         /// <returns>A boolean indicating whether the string is null or empty.</returns>
-        [Pure]
         public static bool IsNullOrEmpty(this string value)
         {
             return string.IsNullOrEmpty(value);
@@ -182,11 +175,6 @@ namespace SoftwarePassion.Common.Core.Extensions
         /// <returns>The replaced string.</returns>
         public static string Replace(this string replacable, int index, int length, string replaceValue)
         {
-            Contract.Requires(replacable != null);
-            Contract.Requires(index >= 0 && index < replacable.Length);
-            Contract.Requires(length > 0);
-            Contract.Requires(replaceValue != null);
-
             var endPartIndex = index + length;
             var replaced = replacable.Substring(0, index) + replaceValue;
             if (endPartIndex < replacable.Length)
