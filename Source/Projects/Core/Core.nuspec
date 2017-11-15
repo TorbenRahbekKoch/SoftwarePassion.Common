@@ -16,15 +16,15 @@
 		<tags>Utility</tags>
 		<dependencies />
     <frameworkAssemblies>
-      <frameworkAssembly assemblyName="System.Runtime.Serialization" targetFramework="net45" />
-      <frameworkAssembly assemblyName="System" targetFramework="net45" />
-      <frameworkAssembly assemblyName="System.Xml" targetFramework="net45" />
-      <frameworkAssembly assemblyName="System.Core" targetFramework="net45" />
+      <frameworkAssembly assemblyName="System.Runtime.Serialization" targetFramework="net461" />
+      <frameworkAssembly assemblyName="System" targetFramework="net461" />
+      <frameworkAssembly assemblyName="System.Xml" targetFramework="net461" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework="net461" />
     </frameworkAssemblies>
   </metadata>
 	<files>
-		<file src="..\..\..\Build\Release\SoftwarePassion.Common.Core.dll" target="lib\net45\" />
-		<file src="..\..\..\Build\Release\SoftwarePassion.Common.Core.pdb" target="lib\net45\" />
-		<file src="..\..\..\Build\Release\SoftwarePassion.Common.Core.xml" target="lib\net45\" />
+		<file src="..\..\..\Build\Release\SoftwarePassion.Common.Core.dll" target="lib\net461\" />
+		<file src="..\..\..\Build\Release\SoftwarePassion.Common.Core.pdb" target="lib\net461\" />
+		<file src="..\..\..\Build\Release\SoftwarePassion.Common.Core.xml" target="lib\net461\" />
 	</files>
 </package>

@@ -12,19 +12,19 @@
 		<summary>Safe Service Hosting for WCF.</summary>
 		<description>Safe Sevice Hosting utility class for self-hosting WCF services.</description>
 		<releaseNotes></releaseNotes>
-		<copyright>Copyright 2014</copyright>
+		<copyright>Copyright 2017</copyright>
 		<tags>Utility</tags>
     <dependencies/>
     <frameworkAssemblies>
-      <frameworkAssembly assemblyName="System.Runtime.Serialization" targetFramework="net45" />
-      <frameworkAssembly assemblyName="System" targetFramework="net45" />
-      <frameworkAssembly assemblyName="System.Xml" targetFramework="net45" />
-      <frameworkAssembly assemblyName="System.Core" targetFramework="net45" />
+      <frameworkAssembly assemblyName="System.Runtime.Serialization" targetFramework="net461" />
+      <frameworkAssembly assemblyName="System" targetFramework="net461" />
+      <frameworkAssembly assemblyName="System.Xml" targetFramework="net461" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework="net461" />
     </frameworkAssemblies>
   </metadata>
 	<files>
-		<file src="..\..\..\Build\Release\SoftwarePassion.Common.Core.Wcf.dll" target="lib\net45\" />
-		<file src="..\..\..\Build\Release\SoftwarePassion.Common.Core.Wcf.pdb" target="lib\net45\" />
-		<file src="..\..\..\Build\Release\SoftwarePassion.Common.Core.Wcf.xml" target="lib\net45\" />
+		<file src="..\..\..\Build\Release\SoftwarePassion.Common.Core.Wcf.dll" target="lib\net461\" />
+		<file src="..\..\..\Build\Release\SoftwarePassion.Common.Core.Wcf.pdb" target="lib\net461\" />
+		<file src="..\..\..\Build\Release\SoftwarePassion.Common.Core.Wcf.xml" target="lib\net461\" />
 	</files>
 </package>
