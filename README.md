@@ -1,8 +1,10 @@
-SoftwarePassion.Common
-----------------------
+# SoftwarePassion.Common
 
-Core
-====
+# 2.0.0
+  .NET Standard 2.0
+
+
+## Core
 Various low-level utilities. Some cool StringExtensions.
 
 Worth checking out is the TimeProvider (inspired by Mark Seeman) and the 

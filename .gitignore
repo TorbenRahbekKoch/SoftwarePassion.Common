@@ -1,6 +1,7 @@
 .svn
 Debug
 /Build
+bin
 
 *.user
 

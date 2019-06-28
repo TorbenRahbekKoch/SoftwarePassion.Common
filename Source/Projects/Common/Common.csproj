@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>SoftwarePassion.Common</AssemblyName>
+    <RootNamespace>SoftwarePassion.Common</RootNamespace>
+    <Version>2.0.0</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Company>Software Passion</Company>
+    <Authors>Torben Rahbek Koch</Authors>
+    <PackageLicenseUrl>https://github.com/TorbenRahbekKoch/SoftwarePassion.Common/blob/master/LICENSE</PackageLicenseUrl>
+    <Copyright>Copyright 2017</Copyright>
+    <Description>A small collection of valuable utilities used in my other projects.</Description>
+    <PackageProjectUrl>https://github.com/TorbenRahbekKoch/SoftwarePassion.Common</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/TorbenRahbekKoch/SoftwarePassion.Common/blob/master/nuget/SoftwarePassion.Common.Core.logo.png</PackageIconUrl>
+    <PackageTags>Utility</PackageTags>
+    <RepositoryUrl>https://github.com/TorbenRahbekKoch/SoftwarePassion.Common</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+  </PropertyGroup>
+
+</Project>
