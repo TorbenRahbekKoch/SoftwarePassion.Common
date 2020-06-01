@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Xml;
 
-namespace SoftwarePassion.Common.Core.Extensions
+namespace SoftwarePassion.Common.Extensions
 {
     /// <summary>
     /// Extensions for the String class.

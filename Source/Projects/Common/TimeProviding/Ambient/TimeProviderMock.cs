@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SoftwarePassion.Common.Core.TimeProviding.Ambient
+namespace SoftwarePassion.Common.TimeProviding.Ambient
 {
     /// <summary>
     /// Convenience class for testing scenarios. Use <see cref="TimeSetter"/> to encapsulate it in a using statement.

@@ -1,7 +1,6 @@
 ﻿using System;
+using SoftwarePassion.Common.TimeProviding.Ambient;
 using Xunit;
-using SoftwarePassion.Common.Core.TimeProviding;
-using SoftwarePassion.Common.Core.TimeProviding.Ambient;
 
 namespace SoftwarePassion.Common.Core.Tests.Unit.TimeProviding
 {

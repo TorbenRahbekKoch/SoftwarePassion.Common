@@ -1,6 +1,5 @@
 ﻿using System;
-using SoftwarePassion.Common.Core.TimeProviding;
-using SoftwarePassion.Common.Core.TimeProviding.Ambient;
+using SoftwarePassion.Common.TimeProviding.Ambient;
 
 namespace SoftwarePassion.Common.Core.Tests.Unit.TimeProviding
 {

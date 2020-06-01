@@ -3,10 +3,9 @@
 # 2.0.0
   .NET Standard 2.0
 
+Various low-level utilities. Some StringExtensions.
 
-## Core
-Various low-level utilities. Some cool StringExtensions.
-
+## TimeProviding
 Worth checking out is the TimeProvider (inspired by Mark Seeman) and the 
 PluginFinder - a poor-man's Plugin system.
 

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using SoftwarePassion.Common.Core.Extensions;
+using SoftwarePassion.Common.Extensions;
 
-namespace SoftwarePassion.Common.Core.PluginManagement
+namespace SoftwarePassion.Common.PluginManagement
 {
     /// <summary>
     /// A poor man's plugin manager used for finding an implementation of a 

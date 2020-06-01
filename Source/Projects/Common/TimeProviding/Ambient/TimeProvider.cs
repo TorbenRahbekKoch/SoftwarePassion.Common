@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SoftwarePassion.Common.Core.TimeProviding.Ambient
+namespace SoftwarePassion.Common.TimeProviding.Ambient
 {
     /// <summary>
     /// Ambient TimeProvider with support for property injection to change the actual

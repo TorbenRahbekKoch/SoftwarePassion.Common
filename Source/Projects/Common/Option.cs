@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SoftwarePassion.Common.Core
+namespace SoftwarePassion.Common
 {
     /// <summary>
     /// A functional option implementation. Inspired

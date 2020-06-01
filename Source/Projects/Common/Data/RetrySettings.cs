@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SoftwarePassion.Common.Core.Data
+namespace SoftwarePassion.Common.Data
 {
     /// <summary>
     /// Retry settings used by SqlDataAccessHandler.

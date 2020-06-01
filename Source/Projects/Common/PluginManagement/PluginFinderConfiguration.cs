@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace SoftwarePassion.Common.Core.PluginManagement
+namespace SoftwarePassion.Common.PluginManagement
 {
     /// <summary>
     /// Configuration for <see cref="PluginFinder"/>.

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SoftwarePassion.Common.Core.TimeProviding.Ambient
+namespace SoftwarePassion.Common.TimeProviding.Ambient
 {
     /// <summary>
     /// Used for encapsulating a change of the DefaultTimeProvider. Very useful in tests.

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SoftwarePassion.Common.Core.TimeProviding
+namespace SoftwarePassion.Common.TimeProviding
 {
     public class TimeMock : ITime
     {

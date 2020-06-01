@@ -1,4 +1,4 @@
-﻿namespace SoftwarePassion.Common.Core.PluginManagement
+﻿namespace SoftwarePassion.Common.PluginManagement
 {
     /// <summary>
     /// Tells whether to ignore System* assemblies in PlugFinder.

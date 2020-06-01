@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
+using SoftwarePassion.Common.Extensions;
 using Xunit;
-using SoftwarePassion.Common.Core.Extensions;
 
 namespace SoftwarePassion.Common.Core.Tests.Extensions.StringExtensionTests
 {
